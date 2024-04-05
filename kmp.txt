@@ -1,0 +1,36 @@
+private static int[] computeLpsArray(String pattern)
+    {
+        int n = pattern.length();
+        int j = 0;
+        int[] lps = new int[n];
+        for(int i=1;i<n;i++)
+        {
+            while(j>0 && pattern.charAt(i)!=pattern.charAt(j))
+                j = lps[j-1];
+            if(pattern.charAt(i)==pattern.charAt(j))
+                j++;
+            lps[i] = j;
+        }
+        return lps;
+    }
+    private static int kmp(String text,String pattern)
+    {
+        int[] lps = computeLpsArray(pattern);
+        int m = pattern.length();
+        int n = text.length();
+        int j = 0;
+        int count = 0;
+        for(int i=0;i<n;i++)
+        {
+            while(j>0 && text.charAt(i)!=pattern.charAt(j))
+                j = lps[j-1];
+            if(text.charAt(i)==pattern.charAt(j))
+                j++;
+            if(j==m)
+            {
+                j=0;
+                count++;
+            }
+        }
+        return count;
+    }
