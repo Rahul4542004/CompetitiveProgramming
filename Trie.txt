@@ -1,0 +1,17 @@
+class Trie{
+        Trie[] child;
+        int cost = 0;
+        public Trie(){
+            this.child = new Trie[26];
+        }
+    }
+    public void insert(Trie root,String s,int cost){
+        int n = s.length();\
+        for(int i=0;i<n;i++){
+            int index = s.charAt(i)-'a';
+            if(root.child[index]==null)
+                root.child[index] = new Trie();
+            root = root.child[index];
+        }
+        root.cost = cost;
+    }
