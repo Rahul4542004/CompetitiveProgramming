@@ -1,0 +1,36 @@
+private static int ceilBinarySearch(int[] arr,int n,int x){
+        int left = 0;
+        int right = n-1;
+        int ans = -1;
+        while(left<=right){
+            int mid = (left+right)/2;
+            if(arr[mid]>x){
+                right = mid-1;
+            }
+            else if(arr[mid]==x){
+                ans = mid;
+                left = mid+1;
+            }
+            else
+                left = mid+1;
+        }
+        return ans;
+    }
+    private static int floorBinarySearch(int[] arr,int n,int x){
+        int left = 0;
+        int right = n-1;
+        int ans = -1;
+        while(left<=right){
+            int mid = (left+right)/2;
+            if(arr[mid]>x){
+                right = mid-1;
+            }
+            else if(arr[mid]==x){
+                ans = mid;
+                right = mid-1;
+            }
+            else
+                left = mid+1;
+        }
+        return ans;
+    }
