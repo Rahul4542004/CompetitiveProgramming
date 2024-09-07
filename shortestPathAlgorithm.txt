@@ -1,0 +1,20 @@
+public static int[] shortestPath(List<List<Node>> list,int n,int src){
+        int[] dist = new int[n];
+        Arrays.fill(dist,Integer.MAX_VALUE);
+        PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingInt(node -> node.weight));
+        pq.offer(new Node(src,0));
+        dist[src] = 0;
+        while(!pq.isEmpty()){
+            Node currentNode = pq.poll();
+            int vertex = currentNode.vertex;
+            int weight = currentNode.weight;
+            for(Node node : list.get(vertex)){
+                int neighbour = node.vertex;
+                if(dist[neighbour] > weight + node.weight){
+                    dist[neighbour] = weight + node.weight;
+                    pq.offer(new Node(neighbour,dist[neighbour]));
+                }
+            }
+        }
+        return dist;
+    }
